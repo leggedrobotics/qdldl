@@ -1,0 +1,9 @@
+<package format="2">
+  <name>qdldl</name>
+  <version>0.0.1</version>
+  <description>qdldl</description>
+  <maintainer email="ghottiger@anybotics.com">Gabriel Hottiger</maintainer>
+  <license>Apache 2.0</license>
+  <author email="ghottiger@anybotics.com">Gabriel Hottiger</author>
+  <buildtool_depend>catkin</buildtool_depend>
+</package>

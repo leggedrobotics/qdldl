@@ -41,7 +41,7 @@ To install (uninstall) the libraries and headers you can simply run `make instal
 
 ### Main API
 
-The QDLDL API consists of 5 functions documented in [`include/qdldl.h`](./include/qdldl.h).
+The QDLDL API consists of 5 functions documented in [`include/qdldl/qdldl.h`](./include/qdldl/qdldl.h).
 For more details and a working example see [`examples/c/example.c`](./examples/c/example.c).
 
 **N.B.** There is **no memory allocation** performed in these routines. The user is assumed to have the working vectors already allocated.

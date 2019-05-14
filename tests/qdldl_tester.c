@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "minunit.h"
-#include "qdldl.h"
+#include "qdldl/qdldl.h"
 
 //utility functions for solves
 QDLDL_float vec_diff_norm(QDLDL_float* x, QDLDL_float* y, QDLDL_int len);
