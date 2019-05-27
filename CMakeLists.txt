@@ -101,8 +101,17 @@ set(
 # Create object library
 # ----------------------------------------------
 add_library (qdldlobject ${qdldl_src})
+# Declare include directories for the cmake exported target
 target_include_directories(qdldlobject PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
+include(GNUInstallDirs)
+
+# Install qdldl object library
+install(TARGETS qdldlobject
+		EXPORT  ${PROJECT_NAME}
+		LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+		ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+		RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 # Create Static Library
 # ----------------------------------------------
@@ -120,7 +129,6 @@ target_include_directories(qdldlstatic
 # Install Static Library
 # ----------------------------------------------
 
-include(GNUInstallDirs)
 
 install(TARGETS qdldlstatic
         EXPORT  ${PROJECT_NAME}
