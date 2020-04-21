@@ -1,4 +1,4 @@
-#include "qdldl.h"
+#include "qdldl/qdldl.h"
 #include <stdlib.h>
 #include <stdio.h>
 

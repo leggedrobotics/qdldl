@@ -2,7 +2,7 @@
 #define QDLDL_H
 
 // Include qdldl type options
-#include "qdldl_types.h"
+#include "qdldl/qdldl_types.h"
 
 # ifdef __cplusplus
 extern "C" {

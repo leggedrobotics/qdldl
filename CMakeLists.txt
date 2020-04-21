@@ -65,8 +65,24 @@ else()
 endif()
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/configure/qdldl_types.h.in
-               ${CMAKE_CURRENT_SOURCE_DIR}/include/qdldl_types.h
+               ${CMAKE_CURRENT_SOURCE_DIR}/include/qdldl/qdldl_types.h
                NEWLINE_STYLE LF)
+
+option(BUILD_CATKIN_PACKAGE "Build catkin package" ON)
+
+if(BUILD_CATKIN_PACKAGE)
+# Find Catkin
+find_package(catkin REQUIRED COMPONENTS
+)
+
+# Declare this project as a catkin package
+catkin_package(
+  INCLUDE_DIRS include
+  LIBRARIES ${PROJECT_NAME} qdldlobject
+  CATKIN_DEPENDS
+)
+endif(BUILD_CATKIN_PACKAGE)
+
 
 
 # Set sources
@@ -78,15 +94,24 @@ set(
 
 set(
 	qdldl_headers
-	include/qdldl.h
-	include/qdldl_types.h
+	include/qdldl/qdldl.h
+	include/qdldl/qdldl_types.h
 	)
 
 # Create object library
 # ----------------------------------------------
-add_library (qdldlobject OBJECT ${qdldl_src} ${qdldl_headers})
+add_library (qdldlobject ${qdldl_src})
+# Declare include directories for the cmake exported target
 target_include_directories(qdldlobject PRIVATE ${PROJECT_SOURCE_DIR}/include)
 
+include(GNUInstallDirs)
+
+# Install qdldl object library
+install(TARGETS qdldlobject
+		EXPORT  ${PROJECT_NAME}
+		LIBRARY       DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+		ARCHIVE       DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+		RUNTIME       DESTINATION "${CMAKE_INSTALL_BINDIR}")
 
 # Create Static Library
 # ----------------------------------------------
@@ -104,7 +129,6 @@ target_include_directories(qdldlstatic
 # Install Static Library
 # ----------------------------------------------
 
-include(GNUInstallDirs)
 
 install(TARGETS qdldlstatic
         EXPORT  ${PROJECT_NAME}
